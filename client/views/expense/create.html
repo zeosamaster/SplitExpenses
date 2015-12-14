@@ -1,0 +1,79 @@
+<div class="col-lg-3"></div>
+<div class="col-lg-6">
+	<h3>Create Expense</h3>
+
+	<form role="form" ng-submit="create(expense)">
+		<div class="well well-sm">
+			<strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
+		</div>
+		<div class="form-expense">
+			<label for="InputName">Name</label>
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="expense.name" name="InputName" id="InputName" placeholder="Name" required>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+			</div>
+		</div>
+		<div class="form-expense">
+			<label for="InputValue">Value</label>
+			<div class="input-group">
+				<input type="number" class="form-control" ng-model="expense.value" name="InputValue" id="InputValue" placeholder="Value" required>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+			</div>
+		</div>
+		<div class="form-expense">
+			<label for="InputDate">Date</label>
+			<div class="input-group">
+				<input type="date" class="form-control" ng-model="expense.date" name="InputDate" id="InputDate" placeholder="Date" required>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+			</div>
+		</div>
+		<div class="form-expense">
+			<label for="InputTime">Time</label>
+			<div class="input-group">
+				<input type="time" class="form-control" ng-model="expense.time" name="InputTime" id="InputTime" placeholder="Time">
+			</div>
+		</div>
+		<div class="form-expense">
+			<label for="InputLocation">Location</label>
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="expense.location" name="InputLocation" id="InputLocation" placeholder="Location">
+			</div>
+		</div>
+		<div class="form-expense">
+			<label>Who paid?</label>
+			<div class="input-group tiny-users">
+				<div class="tiny-user selectable" ng-class="{'selected-user': isPayerSelected(user)}" ng-repeat="user in getUsers()">
+					<div ng-click="toggleSelectedPayer(user)">
+						<img class="user-image" ng-src="{{getUserImage(user)}}" />
+						<div class="name">{{user.name}}</div>
+					</div>
+					<div ng-if="isPayerSelected(user)">
+						<label for="InputDate">How much?</label>
+						<div class="input-group">
+							<input type="number" class="form-control" placeholder="Value" required>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-expense">
+			<label>Owers</label>
+			<div class="input-group tiny-users">
+				<div class="tiny-user selectable" ng-class="{'selected-user': isOwerSelected(user)}" ng-repeat="user in getUsers()">
+					<div ng-click="toggleSelectedOwer(user)">
+						<img class="user-image" ng-src="{{getUserImage(user)}}" />
+						<div class="name">{{user.name}}</div>
+					</div>
+					<div ng-if="isOwerSelected(user)">
+						<label for="InputDate">How much?</label>
+						<div class="input-group">
+							<input type="number" class="form-control" placeholder="Value" required>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" name="submit" id="submit" class="btn btn-success pull-right">Submit</button>
+	</form>
+</div>
+<div class="col-lg-3"></div>

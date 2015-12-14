@@ -1,0 +1,64 @@
+/* app css stylesheet */
+
+footer {
+	margin-top: 50px;
+}
+
+.input-group {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.navbar-fixed-top + * {
+	margin-top: 70px;
+}
+
+.btn-default {
+	margin-top: 10px;
+}
+
+.list >:nth-child(odd) {
+	background-color: #fafafa;
+}
+
+.list >:nth-child(even) {
+	background-color: #f0f0f0;
+}
+
+.selectable {
+	cursor: pointer;
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* users */
+
+.user {
+	height: 100px;
+	line-height: 100px;
+}
+
+.user-image {
+	margin: 18px;
+	width: 64px;
+	height: 64px;
+}
+
+.tiny-users {
+	display: inline-flex;
+}
+
+.tiny-user {
+	width: 100px;
+}
+
+.tiny-user * {
+	text-align: center;
+}
+
+.tiny-user.selected-user {
+	background-color: #FC5;
+}

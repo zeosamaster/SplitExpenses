@@ -1,0 +1,7 @@
+<div class="list">
+	<div class="user" ng-repeat="user in users">
+		<img class="user-image" ng-if="user.image" ng-src="user.image" />
+		<img class="user-image" ng-if="!user.image" src="img/default_user_icon.png" />
+		<span>{{user.name}}</span>
+	</div>
+</div>
