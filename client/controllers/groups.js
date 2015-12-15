@@ -1,31 +1,39 @@
 'use strict';
 
-angular.module('ngSplitExpenses.group', ['ngRoute'])
+angular.module('ngSplitExpenses.groups', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/groups', {
-			templateUrl: 'views/group/list.html',
-			controller: 'groupCtrl'
+			templateUrl: 'views/groups/list.html',
+			controller: 'groupsCtrl'
 		})
-		.when('/group/create', {
-			templateUrl: 'views/group/create.html',
-			controller: 'groupCtrl'
+		.when('/groups/create', {
+			templateUrl: 'views/groups/create.html',
+			controller: 'groupsCtrl'
 		})
-		.when('/group/:groupId', {
-			templateUrl: 'views/group/details.html',
-			controller: 'groupCtrl'
+		.when('/groups/:groupId', {
+			templateUrl: 'views/groups/details.html',
+			controller: 'groupsCtrl'
 		})
-		.when('/group/edit/:groupId', {
-			templateUrl: 'views/group/edit.html',
-			controller: 'groupCtrl'
+		.when('/groups/edit/:groupId', {
+			templateUrl: 'views/groups/edit.html',
+			controller: 'groupsCtrl'
 		});
 }])
 
-.controller('groupCtrl', ['$scope', function ($scope) {
-	console.log("groupCtrl");
-	$scope.groups = dummy_groups;
+.controller('groupsCtrl', ['$rootScope', '$scope', '$http', 'groupsServices', function ($rootScope, $scope, $http, groupsServices) {
+
 	$scope.selectedUsers = {};
+
+	$scope.groups = [];
+	$scope.loadGroups = function(){
+		$http.get($rootScope.baseUrl + '/groups', function(data){
+			debugger;
+			$scope.groups = data;
+		});
+	}
+	$scope.loadGroups();
 
 	$scope.create = function (group) {
 		group.members = [];
@@ -42,7 +50,7 @@ angular.module('ngSplitExpenses.group', ['ngRoute'])
 	}
 
 	$scope.getUsers = function () {
-		return dummy_users;
+		return $scope.users;
 	}
 
 	$scope.getUserImage = function (user) {

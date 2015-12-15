@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var expenses = require('../controllers/expenses');
+'use strict';
 
-/* GET users listing. */
-router.get('/expenses', expenses.list);
-router.get('/expense/:expenseId', expenses.get);
-router.post('/expense/create', expenses.create);
-router.post('/expense/edit/:expenseId', expenses.edit);
+module.exports = function (app, db) {
+	var expenses = require('../controllers/expenses')(db);
 
-module.exports = router;
+	app.route('/api/expenses').get(expenses.list);
+	app.route('/api/expenses/create').post(expenses.create);
+	app.route('/api/expenses/edit/:id').post(expenses.edit);
+	app.route('/api/expenses/:id').get(expenses.get);
+}

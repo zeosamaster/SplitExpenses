@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var payments = require('../controllers/payments');
+'use strict';
 
-/* GET users listing. */
-router.get('/payments', payments.list);
-router.get('/payment/:paymentId', payments.get);
-router.post('/payment/create', payments.create);
-router.post('/payment/edit/:paymentId', payments.edit);
+module.exports = function (app, db) {
+	var payments = require('../controllers/payments')(db);
 
-module.exports = router;
+	app.route('/api/payments').get(payments.list);
+	app.route('/api/payments/create').post(payments.create);
+	app.route('/api/payments/edit/:id').post(payments.edit);
+	app.route('/api/payments/:id').get(payments.get);
+}

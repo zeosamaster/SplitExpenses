@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var users = require('../controllers/users');
+'use strict';
 
-/* GET users listing. */
-router.get('/users', users.list);
-router.get('/user/:userId', users.get);
-router.post('/user/create', users.create);
-router.post('/user/edit/:userId', users.edit);
+module.exports = function (app, db) {
+	var users = require('../controllers/users')(db);
 
-module.exports = router;
+	app.route('/api/users').get(users.list);
+	app.route('/api/users/create').post(users.create);
+	app.route('/api/users/edit/:id').post(users.edit);
+	app.route('/api/users/:id').get(users.get);
+}

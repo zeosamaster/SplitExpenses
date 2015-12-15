@@ -1,32 +1,34 @@
 'use strict';
 
-angular.module('ngSplitExpenses.expense', ['ngRoute'])
+angular.module('ngSplitExpenses.expenses', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/expenses', {
-			templateUrl: 'views/expense/list.html',
-			controller: 'expenseCtrl'
+			templateUrl: 'views/expenses/list.html',
+			controller: 'expensesCtrl'
 		})
-		.when('/expense/create', {
-			templateUrl: 'views/expense/create.html',
-			controller: 'expenseCtrl'
+		.when('/expenses/create', {
+			templateUrl: 'views/expenses/create.html',
+			controller: 'expensesCtrl'
 		})
-		.when('/expense/:expenseId', {
-			templateUrl: 'views/expense/details.html',
-			controller: 'expenseCtrl'
+		.when('/expenses/:expenseId', {
+			templateUrl: 'views/expenses/details.html',
+			controller: 'expensesCtrl'
 		})
-		.when('/expense/edit/:expenseId', {
-			templateUrl: 'views/expense/edit.html',
-			controller: 'expenseCtrl'
+		.when('/expenses/edit/:expenseId', {
+			templateUrl: 'views/expenses/edit.html',
+			controller: 'expensesCtrl'
 		});
 }])
 
-.controller('expenseCtrl', ['$scope', function ($scope) {
-	console.log("expenseCtrl");
-	$scope.users = dummy_users;
+.controller('expensesCtrl', ['$rootScope', '$scope', '$http', 'expensesService', function ($rootScope, $scope, $http, expensesService) {
+
 	$scope.payers = {};
 	$scope.owers = {};
+
+	$scope.users = [];
+	$usersService.loadUsers($scope.users);
 
 	$scope.create = function (expense) {
 		expense.payers = [];
@@ -51,7 +53,7 @@ angular.module('ngSplitExpenses.expense', ['ngRoute'])
 	}
 
 	$scope.getUsers = function () {
-		return dummy_users;
+		return $scope.users;
 	}
 
 	$scope.getUserImage = function (user) {

@@ -1,0 +1,26 @@
+{
+  "name": "splitexpenses",
+  "description": "Split Expenses",
+  "main": "index.js",
+  "authors": [
+    "Fabio Matias"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/zeosamaster/SplitExpenses",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "bootstrap": "~3.3.6"
+  }
+}

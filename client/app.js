@@ -3,14 +3,21 @@
 // Declare app level module which depends on views, and components
 angular.module('ngSplitExpenses', [
 	'ngRoute',
-	'ngSplitExpenses.user',
-	'ngSplitExpenses.expense',
-	'ngSplitExpenses.payment',
-	'ngSplitExpenses.group'
-]).
-config(['$routeProvider', function ($routeProvider) {
+	'ngSplitExpenses.users',
+	'ngSplitExpenses.groups',
+	'ngSplitExpenses.expenses',
+	'ngSplitExpenses.payments',
+	'ngSplitExpenses.groupsServices',
+	'ngSplitExpenses.usersServices',
+	'ngSplitExpenses.expensesServices',
+	'ngSplitExpenses.paymentsServices'
+])
+.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 		.otherwise({
 			redirectTo: '/index'
 		});
-}]);
+}])
+.run(function($rootScope) {
+    $rootScope.baseUrl = "http://localhost:5555/api";
+});
