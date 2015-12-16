@@ -1,27 +1,27 @@
 'use strict';
 
-function usersCtrl(db) {
-    "use strict";
+var errorHandler = require("./error");
+var http = require("./http");
 
+function usersCtrl(db) {
 	var users = db.collection("users");
 
-	users.queryUsers = function(callback) {
-		users.find().toArray(function(err, items) {
+	function queryUsers(callback) {
+		users.find().toArray(function (err, items) {
 			if (err) throw err;
 			callback(err, items);
 		});
 	}
 
-	users.sendUsers = function(req, res) {
-		users.queryUsers(function(err, items){
-			res.setHeader('Content-Type', 'application/json');
-			res.send(JSON.stringify(items));
+	function sendUsers(req, res) {
+		queryUsers(function (err, items) {
+			http.sendJson(res, items);
 		});
 	}
 
 	return {
 		list: function (req, res) {
-			users.sendUsers(req, res);
+			sendUsers(req, res);
 		},
 
 		get: function (req, res) {
@@ -33,11 +33,21 @@ function usersCtrl(db) {
 		create: function (req, res) {
 			console.log(req.body);
 
-			req.body._id = req.body.username;
-
-			users.insert(req.body, function(err, result) {
+			db.find({
+				_id: req.body.username
+			}, {
+				_id: 1
+			}).limit(1).toArray(function (err, items) {
 				if (err) throw err;
-				users.sendUsers(req, res);
+				if (items.length) {
+
+				} else {
+					req.body._id = req.body.username;
+					users.insert(req.body, function (err, result) {
+						if (err) throw err;
+						sendUsers(req, res);
+					});
+				}
 			});
 		},
 
@@ -47,6 +57,6 @@ function usersCtrl(db) {
 			res.send(JSON.stringify(users));
 		}
 	}
-};
+}
 
 module.exports = usersCtrl;
