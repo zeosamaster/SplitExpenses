@@ -1,9 +1,0 @@
-{
-	"name"         : "split-expenses",
-	"version"      : "1.0.0",
-	"description"  : "Split Expenses",
-	"author"       : "Fábio Matias",
-	"dependencies" : {
-	
-	}
-}
