@@ -1,47 +1,44 @@
-<div class="col-lg-3"></div>
-<div class="col-lg-6">
-	<h3>Create User</h3>
+<h3>Create User</h3>
 
-	<form role="form" ng-submit="create(user)">
-		<div class="well well-sm">
-			<strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
+<form role="form" ng-submit="create(user)">
+	<div class="well well-sm">
+		<strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
+	</div>
+	<div class="form-group">
+		<label for="InputName">Name</label>
+		<div class="input-group">
+			<input type="text" class="form-control" ng-model="user.name" name="InputName" id="InputName" placeholder="Name" required>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 		</div>
-		<div class="form-group">
-			<label for="InputName">Name</label>
-			<div class="input-group">
-				<input type="text" class="form-control" ng-model="user.name" name="InputName" id="InputName" placeholder="Name" required>
-				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-			</div>
+	</div>
+	<div class="form-group">
+		<label for="InputUsername">Username</label>
+		<div class="input-group">
+			<input type="text" class="form-control" ng-model="user.username" name="InputUsername" id="InputUsername" placeholder="Username" required>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 		</div>
-		<div class="form-group">
-			<label for="InputUsername">Username</label>
-			<div class="input-group">
-				<input type="text" class="form-control" ng-model="user.username" name="InputUsername" id="InputUsername" placeholder="Username" required>
-				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-			</div>
+	</div>
+	<div class="form-group">
+		<label for="InputPassword">Password</label>
+		<div class="input-group">
+			<input type="password" class="form-control" ng-model="user.password" name="InputPassword" id="InputPassword" placeholder="Password" required>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 		</div>
-		<div class="form-group">
-			<label for="InputPassword">Password</label>
-			<div class="input-group">
-				<input type="password" class="form-control" ng-model="user.password" name="InputPassword" id="InputPassword" placeholder="Password" required>
-				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-			</div>
+	</div>
+	<div class="form-group">
+		<label for="InputEmail">Email</label>
+		<div class="input-group">
+			<input type="email" class="form-control" ng-model="user.email" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 		</div>
-		<div class="form-group">
-			<label for="InputEmail">Email</label>
-			<div class="input-group">
-				<input type="email" class="form-control" ng-model="user.email" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
-				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-			</div>
+	</div>
+	<div class="form-group">
+		<label for="InputEmail">Confirm Email</label>
+		<div class="input-group">
+			<input type="email" class="form-control" ng-model="user.confirm_email" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 		</div>
-		<div class="form-group">
-			<label for="InputEmail">Confirm Email</label>
-			<div class="input-group">
-				<input type="email" class="form-control" ng-model="user.confirm_email" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required>
-				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-			</div>
-		</div>
-		<button type="submit" name="submit" id="submit" class="btn btn-success pull-right">Submit</button>
-	</form>
-</div>
-<div class="col-lg-3"></div>
+	</div>
+	<a href="#/users" class="btn btn-danger pull-left">Cancel</a>
+	<button type="submit" name="submit" id="submit" class="btn btn-success pull-right">Submit</button>
+</form>

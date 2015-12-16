@@ -9,6 +9,14 @@ footer {
 	margin-bottom: 20px;
 }
 
+.margin-bottom {
+	margin-bottom: 20px;
+}
+
+.margin-top {
+	margin-top: 20px;
+}
+
 .navbar-fixed-top + * {
 	margin-top: 70px;
 }
