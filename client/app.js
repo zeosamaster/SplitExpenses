@@ -7,6 +7,7 @@ angular.module('ngSplitExpenses', [
 	'ngSplitExpenses.groups',
 	'ngSplitExpenses.expenses',
 	'ngSplitExpenses.payments',
+	'ngSplitExpenses.serverServices',
 	'ngSplitExpenses.groupsServices',
 	'ngSplitExpenses.usersServices',
 	'ngSplitExpenses.expensesServices',
