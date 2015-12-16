@@ -2,10 +2,14 @@
 
 angular.module('ngSplitExpenses.usersServices', [])
 
-.service('usersServices', ['$rootScope', function ($rootScope) {
-	this.loadUsers = function(users){
-		$http.get($rootScope.baseUrl + '/users').then(function(res){
-			users = res.data;
-		});
+.service('usersServices', ['$rootScope', '$http', 'serverServices', function ($rootScope, $http, serverServices) {
+	this.controller = '/users';
+
+	this.getList = function(callback) {
+		serverServices.getList(this.controller, callback);
+	}
+
+	this.getProfileImage = function(user){
+		return user.image || "img/default_user_icon.png";
 	}
 }]);
