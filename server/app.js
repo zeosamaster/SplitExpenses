@@ -17,7 +17,7 @@ MongoClient.connect(config.db_url, function (err, db) {
 	"use strict";
     if(err) throw err;
 
-	console.log("Connected to db: ", config.db_url);
+	console.log("Connected to db:", config.db_url);
 
     // Register templating engine
     app.engine('html', cons.swig);
@@ -40,5 +40,5 @@ MongoClient.connect(config.db_url, function (err, db) {
 
     // Start app
     app.listen(config.port);
-    console.log('Server listening on port ', config.port);
+    console.log('Server listening on port', config.port);
 });
