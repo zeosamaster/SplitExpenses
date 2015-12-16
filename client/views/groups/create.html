@@ -24,7 +24,7 @@
 			<div class="input-group tiny-users">
 				<div class="tiny-user selectable" ng-class="{'selected-user': isUserSelected(user)}" ng-repeat="user in getUsers()">
 					<div ng-click="toggleSelectedUser(user)">
-						<img class="user-image" ng-src="{{getUserImage(user)}}" />
+						<img class="user-image" ng-src="{{getProfileImage(user)}}" />
 						<div class="name">{{user.name}}</div>
 					</div>
 				</div>
