@@ -28,7 +28,9 @@ angular.module('ngSplitExpenses.expenses', ['ngRoute'])
 	$scope.owers = {};
 
 	$scope.users = [];
-	$usersService.loadUsers($scope.users);
+	usersServices.getUsers(function(users){
+		$scope.users = users;
+	});
 
 	$scope.create = function (expense) {
 		expense.payers = [];
@@ -56,8 +58,8 @@ angular.module('ngSplitExpenses.expenses', ['ngRoute'])
 		return $scope.users;
 	}
 
-	$scope.getUserImage = function (user) {
-		return user.image || "img/default_user_icon.png";
+	$scope.getProfileImage = function(user){
+		return usersServices.getProfileImage(user);
 	}
 
 	$scope.toggleSelectedPayer = function (user) {

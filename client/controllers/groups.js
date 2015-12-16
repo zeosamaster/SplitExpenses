@@ -53,8 +53,8 @@ angular.module('ngSplitExpenses.groups', ['ngRoute'])
 		return $scope.users;
 	}
 
-	$scope.getUserImage = function (user) {
-		return user.image || "img/default_user_icon.png";
+	$scope.getProfileImage = function(user){
+		return usersServices.getProfileImage(user);
 	}
 
 	$scope.toggleSelectedUser = function (user) {

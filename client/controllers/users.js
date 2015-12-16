@@ -22,11 +22,13 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 		});
 }])
 
-.controller('usersCtrl', ['$rootScope', '$scope', '$http', 'usersService', function ($rootScope, $scope, $http, usersService) {
+.controller('usersCtrl', ['$rootScope', '$scope', '$http', 'usersServices', function ($rootScope, $scope, $http, usersServices) {
 	console.log("usersCtrl");
 
 	$scope.users = [];
-	$usersService.loadUsers($scope.users);
+	usersServices.getList(function(users){
+		$scope.users = users;
+	});
 
 	$scope.create = function(user){
 		$http.post($rootScope.baseUrl + '/users/create', user).then(function(res){
@@ -38,7 +40,8 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 		console.log(user);
 	}
 
-	$scope.getUserImage = function(user){
-		return user.image || "img/default_user_icon.png";
+	$scope.getProfileImage = function(user){
+		return usersServices.getProfileImage(user);
 	}
+
 }]);
