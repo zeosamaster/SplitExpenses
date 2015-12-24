@@ -22,7 +22,7 @@ angular.module('ngSplitExpenses.expenses', ['ngRoute'])
 		});
 }])
 
-.controller('expensesCtrl', ['$rootScope', '$scope', '$http', 'expensesService', function ($rootScope, $scope, $http, expensesService) {
+.controller('expensesCtrl', ['$scope', 'expensesService', 'usersService', 'groupsService', function ($scope, expensesService) {
 
 	$scope.payers = {};
 	$scope.owers = {};
@@ -30,6 +30,11 @@ angular.module('ngSplitExpenses.expenses', ['ngRoute'])
 	$scope.users = [];
 	usersServices.getUsers(function(users){
 		$scope.users = users;
+	});
+
+	$scope.groups = [];
+	groupsServices.getGroups(function(groups){
+		$scope.groups = groups;
 	});
 
 	$scope.create = function (expense) {

@@ -22,6 +22,6 @@ angular.module('ngSplitExpenses.payments', ['ngRoute'])
 		});
 }])
 
-.controller('paymentsCtrl', ['$rootScope', '$scope', '$http', 'paymentsServices', function ($rootScope, $scope, $http, paymentsServices) {
+.controller('paymentsCtrl', ['$scope', 'paymentsServices', function ($scope, paymentsServices) {
 	console.log("paymentsCtrl");
 }]);

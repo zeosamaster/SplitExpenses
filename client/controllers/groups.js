@@ -22,18 +22,14 @@ angular.module('ngSplitExpenses.groups', ['ngRoute'])
 		});
 }])
 
-.controller('groupsCtrl', ['$rootScope', '$scope', '$http', 'groupsServices', function ($rootScope, $scope, $http, groupsServices) {
+.controller('groupsCtrl', ['$rootScope', '$scope', 'groupsServices', function ($rootScope, $scope, groupsServices) {
 
 	$scope.selectedUsers = {};
 
 	$scope.groups = [];
-	$scope.loadGroups = function(){
-		$http.get($rootScope.baseUrl + '/groups', function(data){
-			debugger;
-			$scope.groups = data;
-		});
-	}
-	$scope.loadGroups();
+	groupServices.getGroups(function(groups){
+		$scope.groups = groups;
+	});
 
 	$scope.create = function (group) {
 		group.members = [];

@@ -2,10 +2,6 @@
 
 angular.module('ngSplitExpenses.paymentsServices', [])
 
-.service('paymentsServices', ['$rootScope', '$http', function ($rootScope, $http) {
+.service('expensesServices', ['serverServices', function (serverServices) {
 	this.controller = '/payments';
-
-	this.getList = function(callback) {
-		serverServices.getList(this.controller, callback);
-	}
 }]);
