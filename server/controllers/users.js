@@ -2,6 +2,7 @@
 
 var errorHandler = require("./error");
 var http = require("./http");
+var strings = require("../resources/strings");
 
 function usersCtrl(db) {
 	var users = db.collection("users");
@@ -33,14 +34,14 @@ function usersCtrl(db) {
 		create: function (req, res) {
 			console.log(req.body);
 
-			db.find({
+			users.find({
 				_id: req.body.username
 			}, {
 				_id: 1
 			}).limit(1).toArray(function (err, items) {
 				if (err) throw err;
 				if (items.length) {
-
+					errorHandler.errorMessage(res, strings.errors.duplicateUser);
 				} else {
 					req.body._id = req.body.username;
 					users.insert(req.body, function (err, result) {
