@@ -22,25 +22,26 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 		});
 }])
 
-.controller('usersCtrl', ['$rootScope', '$scope', '$http', 'usersServices', function ($rootScope, $scope, $http, usersServices) {
+.controller('usersCtrl', ['$rootScope', '$scope', '$location', 'serverServices', 'usersServices', function ($rootScope, $scope, $location, serverServices, usersServices) {
 	console.log("usersCtrl");
 
 	$scope.users = [];
-	usersServices.getList(function(users){
+	usersServices.getList(function (users) {
 		$scope.users = users;
 	});
 
-	$scope.create = function(user){
-		$http.post($rootScope.baseUrl + '/users/create', user).then(function(res){
-			$scope.users = res.data;
+	$scope.create = function (user) {
+		serverServices.post('/users/create', user, function (data) {
+			$scope.users = data;
+			$location.path("users");
 		});
 	}
 
-	$scope.edit = function(user){
+	$scope.edit = function (user) {
 		console.log(user);
 	}
 
-	$scope.getProfileImage = function(user){
+	$scope.getProfileImage = function (user) {
 		return usersServices.getProfileImage(user);
 	}
 
