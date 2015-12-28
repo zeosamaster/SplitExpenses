@@ -25,9 +25,7 @@ function usersCtrl(db) {
 		},
 
 		get: function (req, res) {
-			var users = ["get"];
-			res.setHeader('Content-Type', 'application/json');
-			res.send(JSON.stringify(users));
+			// TO DO
 		},
 
 		create: function (req, res) {
@@ -38,15 +36,17 @@ function usersCtrl(db) {
 				email: req.body.email,
 				password: req.body.password
 			}).save(function (err, result) {
-				if (err) errorHandler.errorMessage(res, err);
-				sendUsers(req, res);
+				if (err) {
+					errorHandler.errorMessage(res, err);
+					return;
+				} else {
+					sendUsers(req, res);
+				}
 			});
 		},
 
 		edit: function (req, res) {
-			var users = ["edit"];
-			res.setHeader('Content-Type', 'application/json');
-			res.send(JSON.stringify(users));
+			// TO DO
 		},
 
 		delete: function (req, res) {

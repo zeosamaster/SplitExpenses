@@ -5,8 +5,9 @@ var http = require("./http");
 var error = {
 	errorMessage: function (res, error) {
 		var json = {
-			error: error
+			error: error.message
 		};
+		console.log("#", error);
 		http.sendJson(res, json);
 	}
 };

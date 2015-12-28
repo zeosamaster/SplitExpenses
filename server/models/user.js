@@ -16,6 +16,8 @@ var UserSchema = new mongoose.Schema({
 	}
 });
 
+var UserModel = mongoose.model('User', UserSchema);
+
 UserSchema.pre('save', function (next) {
 	var user = this;
 	UserModel.find({
@@ -30,4 +32,4 @@ UserSchema.pre('save', function (next) {
 });
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = UserModel;

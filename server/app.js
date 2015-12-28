@@ -10,8 +10,7 @@ var config = require('./config'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
 	MongoClient = require('mongodb').MongoClient,
-	routes = require('./routes'),
-	models = require('./models');
+	routes = require('./routes');
 
 var mongoose = require('mongoose');
 var db = mongoose.connect(config.db_url, function(err) {
