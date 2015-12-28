@@ -25,6 +25,12 @@ function paymentsCtrl(db) {
 			var users = ["edit"];
 			res.setHeader('Content-Type', 'application/json');
 			res.send(JSON.stringify(users));
+		},
+
+		delete: function (req, res) {
+			var users = ["delete"];
+			res.setHeader('Content-Type', 'application/json');
+			res.send(JSON.stringify(users));
 		}
 	}
 };
