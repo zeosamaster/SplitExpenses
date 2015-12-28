@@ -12,17 +12,21 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 			templateUrl: 'views/users/create.html',
 			controller: 'usersCtrl'
 		})
-		.when('/users/:userId', {
+		.when('/users/:username', {
 			templateUrl: 'views/users/details.html',
 			controller: 'usersCtrl'
 		})
-		.when('/users/edit/:userId', {
+		.when('/users/edit/:username', {
 			templateUrl: 'views/users/edit.html',
+			controller: 'usersCtrl'
+		})
+		.when('/users/delete/:username', {
+			templateUrl: 'views/users/delete.html',
 			controller: 'usersCtrl'
 		});
 }])
 
-.controller('usersCtrl', ['$rootScope', '$scope', '$location', 'serverServices', 'usersServices', function ($rootScope, $scope, $location, serverServices, usersServices) {
+.controller('usersCtrl', ['$scope', '$location', '$routeParams', 'serverServices', 'usersServices', function ($scope, $location, $routeParams, serverServices, usersServices) {
 	console.log("usersCtrl");
 
 	$scope.users = [];
@@ -37,12 +41,19 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 		});
 	}
 
+	$scope.delete = function () {
+		serverServices.post('/users/delete', {username: $routeParams.username}, function (data) {
+			$scope.users = data;
+			$location.path("users");
+		});
+	}
+
 	$scope.edit = function (user) {
 		console.log(user);
 	}
 
-	$scope.getProfileImage = function (user) {
-		return usersServices.getProfileImage(user);
+	$scope.getProfileImage = function (username) {
+		return usersServices.getProfileImage(username);
 	}
 
 }]);
