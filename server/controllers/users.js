@@ -30,12 +30,12 @@ function usersCtrl(db) {
 
 		create: function (req, res) {
 			console.log(req.body);
-			new User({
+			User.create({
 				username: req.body.username,
 				name: req.body.name,
 				email: req.body.email,
 				password: req.body.password
-			}).save(function (err, result) {
+			}, function (err, result) {
 				if (err) {
 					errorHandler.errorMessage(res, err);
 					return;
