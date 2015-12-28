@@ -1,9 +1,12 @@
 <div class="clearfix margin-bottom">
-	<a href="#/users/create" class="btn btn-info pull-right">Create new user</a>
+	<a ng-href="#/users/create" class="btn btn-info pull-right">Create new user</a>
 </div>
 <div class="list">
 	<div class="user" ng-repeat="user in users">
 		<img class="user-image" ng-src="{{getProfileImage(user)}}" />
 		<span>{{user.name}}</span>
+		<div class="pull-right">
+			<a ng-href="#/users/delete/{{user.username}}" class="btn btn-danger">x</a>
+		</div>
 	</div>
 </div>

@@ -1,0 +1,11 @@
+<h3>Delete User</h3>
+
+<form role="form" ng-submit="delete()">
+	<div class="well well-sm">
+		<strong>Are you sure you want to delete the user "{{user.name}}" ?</strong>
+	</div>
+	<div class="btn-group pull-right yes-no">
+		<a class="btn btn-danger" ng-href="#/users">No</a>
+		<button type="submit" name="submit" id="submit" class="btn btn-success">Yes</button>
+	</div>
+</form>
