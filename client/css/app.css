@@ -42,6 +42,14 @@ footer {
     -webkit-appearance: none;
 }
 
+.pull-right {
+	margin-right: 20px;
+}
+
+.btn-group.yes-no .btn {
+	width: 60px;
+}
+
 /* users */
 
 .user {
