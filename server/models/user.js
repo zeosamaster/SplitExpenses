@@ -31,5 +31,4 @@ UserSchema.pre('save', function (next) {
 	});
 });
 
-
 module.exports = UserModel;

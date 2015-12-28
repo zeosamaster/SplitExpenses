@@ -3,6 +3,7 @@
 var config = {
 	port: 5555,
 	env: 'dev',
+	debug: true,
 
 	db_host: 'localhost',
 	db_port: '27017',
