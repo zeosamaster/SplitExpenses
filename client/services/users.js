@@ -2,7 +2,7 @@
 
 angular.module('ngSplitExpenses.usersServices', [])
 
-.service('usersServices', ['$rootScope', '$http', 'serverServices', function ($rootScope, $http, serverServices) {
+.service('usersServices', ['serverServices', function (serverServices) {
 	this.controller = '/users';
 
 	this.getList = function(callback) {

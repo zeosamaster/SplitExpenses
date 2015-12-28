@@ -3,25 +3,26 @@
 	"description": "Split Expenses",
 	"main": "index.js",
 	"authors": [
-		"Fabio Matias"
-	],
+    "Fabio Matias"
+  ],
 	"license": "ISC",
 	"homepage": "https://github.com/zeosamaster/SplitExpenses",
 	"moduleType": [
-		"node"
-	],
+    "node"
+  ],
 	"directory": "client/components",
 	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	],
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
 	"dependencies": {
 		"jquery": "~2.1.4",
 		"angular": "~1.4.8",
 		"angular-route": "~1.4.8",
-		"bootstrap": "~3.3.6"
+		"bootstrap": "~3.3.6",
+		"alertifyjs": "MohammadYounes/alertifyjs#~1.6.0"
 	}
 }

@@ -32,14 +32,13 @@ function usersCtrl(db) {
 
 		create: function (req, res) {
 			console.log(req.body);
-
-			var new_user = new User({
+			new User({
 				username: req.body.username,
 				name: req.body.name,
 				email: req.body.email,
 				password: req.body.password
 			}).save(function (err, result) {
-				if (err) throw err;
+				if (err) errorHandler.errorMessage(res, err);
 				sendUsers(req, res);
 			});
 		},
@@ -51,7 +50,9 @@ function usersCtrl(db) {
 		},
 
 		delete: function (req, res) {
-			User.remove({_id: req.body.username});
+			User.remove({
+				username: req.body.username
+			});
 		}
 	}
 }

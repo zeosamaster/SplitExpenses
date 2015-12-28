@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var strings = require("../resources/strings");
 
 var UserSchema = new mongoose.Schema({
 	name: String,
@@ -14,5 +15,19 @@ var UserSchema = new mongoose.Schema({
 		updatedAt: 'updated'
 	}
 });
+
+UserSchema.pre('save', function (next) {
+	var user = this;
+	UserModel.find({
+		username: user.username
+	}, function (err, items) {
+		if (items.length) {
+			next(new Error(strings.errors.duplicateUser));
+		} else {
+			next();
+		}
+	});
+});
+
 
 module.exports = mongoose.model('User', UserSchema);
