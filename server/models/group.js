@@ -1,8 +1,15 @@
 'use strict';
 
-module.exports = function (mongoose) {
-	var Schema = mongoose.Schema;
-	mongoose.model('Group', new Schema({
-		id: Schema.Types.ObjectId
-	}));
-};
+var mongoose = require('mongoose');
+
+module.exports = mongoose.model('Group', new mongoose.Schema({
+	name: {
+		type: String,
+		unique: false
+	},
+}, {
+	collection: 'groups',
+	timestamps: {
+		createdAt: 'created_at'
+	}
+}));

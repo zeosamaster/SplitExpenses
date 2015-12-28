@@ -1,8 +1,18 @@
 'use strict';
 
-module.exports = function (mongoose) {
-	var Schema = mongoose.Schema;
-	mongoose.model('User', new Schema({
-		id: Schema.Types.ObjectId
-	}));
-};
+var mongoose = require('mongoose');
+
+var UserSchema = new mongoose.Schema({
+	name: String,
+	username: String,
+	email: String,
+	password: String
+}, {
+	versionKey: false,
+	timestamps: {
+		createdAt: 'created',
+		updatedAt: 'updated'
+	}
+});
+
+module.exports = mongoose.model('User', UserSchema);
