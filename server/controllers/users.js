@@ -2,12 +2,12 @@
 
 var errorHandler = require("./error");
 var http = require("./http");
+var User = require("../models/user");
 
 function usersCtrl(db) {
-	var users = db.collection("users");
 
 	function queryUsers(callback) {
-		users.find().toArray(function (err, items) {
+		User.find().exec(function (err, items) {
 			if (err) throw err;
 			callback(err, items);
 		});
@@ -33,21 +33,14 @@ function usersCtrl(db) {
 		create: function (req, res) {
 			console.log(req.body);
 
-			db.find({
-				_id: req.body.username
-			}, {
-				_id: 1
-			}).limit(1).toArray(function (err, items) {
+			var new_user = new User({
+				username: req.body.username,
+				name: req.body.name,
+				email: req.body.email,
+				password: req.body.password
+			}).save(function (err, result) {
 				if (err) throw err;
-				if (items.length) {
-
-				} else {
-					req.body._id = req.body.username;
-					users.insert(req.body, function (err, result) {
-						if (err) throw err;
-						sendUsers(req, res);
-					});
-				}
+				sendUsers(req, res);
 			});
 		},
 
@@ -55,6 +48,10 @@ function usersCtrl(db) {
 			var users = ["edit"];
 			res.setHeader('Content-Type', 'application/json');
 			res.send(JSON.stringify(users));
+		},
+
+		delete: function (req, res) {
+			User.remove({_id: req.body.username});
 		}
 	}
 }
