@@ -1,8 +1,8 @@
 'use strict';
 
-var errorHandler = require("./error");
 var http = require("./http");
 var User = require("../models/user");
+var strings = require("../resources/strings");
 var debug = require("../config").debug;
 
 function usersCtrl(db) {
@@ -16,6 +16,8 @@ function usersCtrl(db) {
 
 	function sendUsers(req, res) {
 		queryUsers(function (err, items) {
+			debug && console.log(strings.success.userCreated);
+			http.sendSuccess(res, strings.success.userCreated);
 			http.sendJson(res, items);
 		});
 	}
@@ -43,7 +45,7 @@ function usersCtrl(db) {
 			}, function (err, result) {
 				if (err) {
 					debug && console.error(err);
-					errorHandler.errorMessage(res, err);
+					http.sendError(res, err);
 					return;
 				} else {
 					debug && console.log("User created successfully");
@@ -62,18 +64,19 @@ function usersCtrl(db) {
 
 			User.remove({
 				username: req.body.username
-			}, function(err) {
+			}, function (err) {
 				if (err) {
 					debug && console.error(err);
-					errorHandler.errorMessage(res, err);
+					http.sendError(res, err);
 					return;
-				} else {{
-					debug && console.log("User deleted successfully");
+				} else {
+					debug && console.log(strings.success.userDeleted);
+					http.sendSuccess(res, strings.success.userDeleted);
 					sendUsers(req, res);
 				}
 			});
 		}
-	}
+	};
 }
 
 module.exports = usersCtrl;

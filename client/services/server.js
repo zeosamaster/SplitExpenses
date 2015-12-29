@@ -7,6 +7,7 @@ angular.module('ngSplitExpenses.serverServices', [])
 		if (res.data && res.data.error) {
 			alertify.error(res.data.error);
 		} else {
+			res.data.success && alertify.success(res.data.success);
 			if (typeof callback === "function") callback(res.data);
 		}
 	}
