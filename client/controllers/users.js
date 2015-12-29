@@ -30,6 +30,8 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 	console.log("usersCtrl");
 
 	$scope.users = [];
+	$scope.username = $routeParams.username;
+
 	usersServices.getList(function (users) {
 		$scope.users = users;
 	});
@@ -42,7 +44,9 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 	}
 
 	$scope.delete = function () {
-		serverServices.post('/users/delete', {username: $routeParams.username}, function (data) {
+		serverServices.post('/users/delete', {
+			username: $routeParams.username
+		}, function (data) {
 			$scope.users = data;
 			$location.path("users");
 		});
