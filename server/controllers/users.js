@@ -42,11 +42,9 @@ function usersCtrl(db) {
 				password: req.body.password
 			}, function (err, result) {
 				if (err) {
-					debug && console.error(err);
 					http.sendError(res, err);
 					return;
 				} else {
-					debug && console.log(strings.success.userCreated);
 					http.sendSuccess(res, strings.success.userCreated);
 					sendUsers(req, res);
 				}
@@ -65,11 +63,9 @@ function usersCtrl(db) {
 				username: req.body.username
 			}, function (err) {
 				if (err) {
-					debug && console.error(err);
 					http.sendError(res, err);
 					return;
 				} else {
-					debug && console.log(strings.success.userDeleted);
 					http.sendSuccess(res, strings.success.userDeleted);
 					sendUsers(req, res);
 				}

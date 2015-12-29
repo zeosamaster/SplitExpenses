@@ -1,5 +1,7 @@
 'use strict';
 
+var debug = require("../config").debug;
+
 function setArrayHeader(res, key, value) {
 	var values = res.get(key) || [];
 	values.push(value);
@@ -8,11 +10,13 @@ function setArrayHeader(res, key, value) {
 
 var http = {
 	sendSuccess: function (res, msg) {
+		debug && console.log(msg);
 		setArrayHeader(res, 'Success', msg);
 	},
-	sendError: function (res, msg) {
-		console.log("#", msg);
-		setArrayHeader(res, 'Error', msg);
+	sendError: function (res, err) {
+		debug && console.error(err.message);
+		setArrayHeader(res, 'Error', err.message);
+		res.end();
 	},
 	sendJson: function (res, json) {
 		res.json(json);
