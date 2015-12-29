@@ -7,7 +7,7 @@ var UserHandler = require('./users'),
 module.exports = function(app, db) {
 	app.all('*', function(req, res, next) {
 
-		console.log('Received request for: ', req.url);
+		console.log("Received request for:", req.url);
 
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');

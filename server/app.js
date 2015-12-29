@@ -15,7 +15,7 @@ var config = require('./config'),
 var mongoose = require('mongoose');
 var db = mongoose.connect(config.db_url, function(err) {
     if(err) {
-        console.log('connection error', err);
+        console.log("Connection error", err);
     } else {
 		console.log("Connected to db:", config.db_url);
     }
@@ -39,6 +39,6 @@ routes(app, db);
 
 // Start app
 app.listen(config.port);
-console.log('Server listening on port', config.port);
+console.log("Server listening on port", config.port);
 
 module.exports = app;
