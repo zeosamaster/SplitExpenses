@@ -59,35 +59,7 @@ angular.module('ngSplitExpenses.expenses', ['ngRoute'])
 		console.log(user);
 	}
 
-	$scope.getUsers = function () {
-		return $scope.users;
-	}
-
-	$scope.getProfileImage = function(user){
-		return usersServices.getProfileImage(user);
-	}
-
-	$scope.toggleSelectedPayer = function (user) {
-		if ($scope.isPayerSelected(user)) {
-			$scope.payers[user.id] = false;
-		} else {
-			$scope.payers[user.id] = true;
-		}
-	}
-
-	$scope.isPayerSelected = function (user) {
-		return !!$scope.payers[user.id];
-	}
-
-	$scope.toggleSelectedOwer = function (user) {
-		if ($scope.isOwerSelected(user)) {
-			$scope.owers[user.id] = false;
-		} else {
-			$scope.owers[user.id] = true;
-		}
-	}
-
-	$scope.isOwerSelected = function (user) {
-		return !!$scope.owers[user.id];
+	$scope.delete = function (user) {
+		console.log(user);
 	}
 }]);

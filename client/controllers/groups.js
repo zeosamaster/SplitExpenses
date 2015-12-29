@@ -22,12 +22,12 @@ angular.module('ngSplitExpenses.groups', ['ngRoute'])
 		});
 }])
 
-.controller('groupsCtrl', ['$rootScope', '$scope', 'groupsServices', function ($rootScope, $scope, groupsServices) {
+.controller('groupsCtrl', ['$scope', 'groupsServices', function ($scope, groupsServices) {
 
 	$scope.selectedUsers = {};
 
 	$scope.groups = [];
-	groupServices.getGroups(function(groups){
+	groupsServices.getGroups(function(groups){
 		$scope.groups = groups;
 	});
 
@@ -45,23 +45,7 @@ angular.module('ngSplitExpenses.groups', ['ngRoute'])
 		console.log(group);
 	}
 
-	$scope.getUsers = function () {
-		return $scope.users;
-	}
-
-	$scope.getProfileImage = function(user){
-		return usersServices.getProfileImage(user);
-	}
-
-	$scope.toggleSelectedUser = function (user) {
-		if ($scope.isUserSelected(user)) {
-			$scope.selectedUsers[user.id] = false;
-		} else {
-			$scope.selectedUsers[user.id] = true;
-		}
-	}
-
-	$scope.isUserSelected = function (user) {
-		return !!$scope.selectedUsers[user.id];
+	$scope.delete = function (group) {
+		console.log(group);
 	}
 }]);
