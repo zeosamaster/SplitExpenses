@@ -16,8 +16,6 @@ function usersCtrl(db) {
 
 	function sendUsers(req, res) {
 		queryUsers(function (err, items) {
-			debug && console.log(strings.success.userCreated);
-			http.sendSuccess(res, strings.success.userCreated);
 			http.sendJson(res, items);
 		});
 	}
@@ -48,7 +46,8 @@ function usersCtrl(db) {
 					http.sendError(res, err);
 					return;
 				} else {
-					debug && console.log("User created successfully");
+					debug && console.log(strings.success.userCreated);
+					http.sendSuccess(res, strings.success.userCreated);
 					sendUsers(req, res);
 				}
 			});
