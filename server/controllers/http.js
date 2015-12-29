@@ -8,11 +8,11 @@ function setArrayHeader(res, key, value) {
 
 var http = {
 	sendSuccess: function (res, msg) {
-		setArrayHeader(res, 'success', msg);
+		setArrayHeader(res, 'Success', msg);
 	},
 	sendError: function (res, msg) {
 		console.log("#", msg);
-		setArrayHeader(res, 'error', msg);
+		setArrayHeader(res, 'Error', msg);
 	},
 	sendJson: function (res, json) {
 		res.json(json);

@@ -4,10 +4,12 @@ angular.module('ngSplitExpenses.serverServices', [])
 
 .service('serverServices', ['$rootScope', '$http', function ($rootScope, $http) {
 	function serverCallback(res, callback) {
-		if (res.data && res.data.error) {
-			alertify.error(res.data.error);
+		if (res.headers("Error")) {
+			alertify.error(res.headers("Error"));
 		} else {
-			res.data.success && alertify.success(res.data.success);
+			if (res.headers("Success")) {
+				alertify.success(res.headers("Success"));
+			}
 			if (typeof callback === "function") callback(res.data);
 		}
 	}
