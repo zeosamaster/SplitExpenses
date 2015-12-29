@@ -18,7 +18,4 @@ angular.module('ngSplitExpenses', [
 		.otherwise({
 			redirectTo: '/index'
 		});
-}])
-.run(function($rootScope) {
-    $rootScope.baseUrl = "http://localhost:5555/api";
-});
+}]);

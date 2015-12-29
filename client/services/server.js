@@ -2,7 +2,9 @@
 
 angular.module('ngSplitExpenses.serverServices', [])
 
-.service('serverServices', ['$rootScope', '$http', function ($rootScope, $http) {
+.service('serverServices', ['$http', function ($http) {
+	var baseUrl = "http://localhost:5555/api";
+
 	function serverCallback(res, callback) {
 		if (res.headers("Error")) {
 			alertify.error(res.headers("Error"));
@@ -15,13 +17,13 @@ angular.module('ngSplitExpenses.serverServices', [])
 	}
 
 	this.get = function (url, data, callback) {
-		$http.get($rootScope.baseUrl + url, data).then(function (res) {
+		$http.get(baseUrl + url, data).then(function (res) {
 			serverCallback(res, callback);
 		});
 	};
 
 	this.post = function (url, data, callback) {
-		$http.post($rootScope.baseUrl + url, data).then(function (res) {
+		$http.post(baseUrl + url, data).then(function (res) {
 			serverCallback(res, callback);
 		});
 	};
