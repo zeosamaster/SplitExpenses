@@ -20,15 +20,18 @@ var UserModel = mongoose.model('User', UserSchema);
 
 UserSchema.pre('save', function (next) {
 	var user = this;
-	UserModel.find({
-		username: user.username
-	}, function (err, items) {
-		if (items.length) {
-			next(new Error(strings.errors.duplicateUser));
-		} else {
-			next();
-		}
-	});
+	UserModel
+		.findOne({
+			username: user.username
+		})
+		.select('_id')
+		.exec(function (err, user) {
+			if (user) {
+				next(new Error(strings.errors.duplicateUser));
+			} else {
+				next();
+			}
+		});
 });
 
 module.exports = UserModel;
