@@ -1,0 +1,17 @@
+<div class="col-md-3">
+	<img class="pull-left user-image detail-image" ng-src="{{getProfileImage(user)}}" />
+</div>
+<div class="col-md-9">
+	<h3>{{user.name}}</h3>
+
+	<div>
+		<p>
+			<label>Username</label> <span>{{user.username}}</span>
+		</p>
+		<p>
+			<label>Email</label> <span>{{user.email}}</span>
+		</p>
+	</div>
+</div>
+
+<a ng-href="#/users" class="btn btn-danger pull-left">Back to list</a>

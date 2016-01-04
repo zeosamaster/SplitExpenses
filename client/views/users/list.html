@@ -3,10 +3,17 @@
 </div>
 <div class="list">
 	<div class="user" ng-repeat="user in users">
-		<img class="user-image" ng-src="{{getProfileImage(user)}}" />
-		<span>{{user.name}}</span>
-		<div class="pull-right">
-			<a ng-href="#/users/delete/{{user.username}}" class="btn btn-danger">x</a>
+		<a ng-href="#/users/{{user.username}}">
+			<img class="pull-left user-image" ng-src="{{getProfileImage(user)}}" />
+		</a>
+		<div class="pull-right btn-group-sm">
+			<a ng-href="#/users/edit/{{user.username}}" class="btn btn-success"> <i class="fa fa-pencil"></i> </a>
+			<a ng-href="#/users/delete/{{user.username}}" class="btn btn-danger"> <i class="fa fa-close"></i> </a>
+		</div>
+		<div class="info">
+			<h4>{{user.name}}</h4>
+			<p class="text-muted">{{user.email}}</p>
+			<p class="text-muted">{{user.username}}</p>
 		</div>
 	</div>
 </div>
