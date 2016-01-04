@@ -54,6 +54,9 @@ footer {
 
 .user {
 	height: 100px;
+}
+
+.user .btn-group-sm {
 	line-height: 100px;
 }
 
