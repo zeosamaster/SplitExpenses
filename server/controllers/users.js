@@ -7,15 +7,28 @@ var debug = require("../config").debug;
 
 function usersCtrl(db) {
 
-	function queryUsers(callback) {
-		User.find().exec(function (err, items) {
+	function getUser(username, callback) {
+		User.findOne({
+			username: username
+		}, function (err, user) {
+			if (!user) {
+				http.sendError(res, strings.error.userNotFound);
+				return;
+			}
 			if (err) throw err;
-			callback(err, items);
+			callback(err, user);
+		});
+	}
+
+	function getUsers(callback) {
+		User.find({}, function (err, users) {
+			if (err) throw err;
+			callback(err, users);
 		});
 	}
 
 	function sendUsers(req, res) {
-		queryUsers(function (err, items) {
+		getUsers(function (err, items) {
 			http.sendJson(res, items);
 		});
 	}
@@ -27,8 +40,11 @@ function usersCtrl(db) {
 		},
 
 		get: function (req, res) {
-			debug && console.log("Get user", req.body.username);
-			// TO DO
+			debug && console.log("Get user", req.params.username);
+
+			getUser(req.params.username, function (err, user) {
+				http.sendJson(res, user);
+			});
 		},
 
 		create: function (req, res) {
@@ -43,32 +59,40 @@ function usersCtrl(db) {
 			}, function (err, result) {
 				if (err) {
 					http.sendError(res, err);
-					return;
-				} else {
-					http.sendSuccess(res, strings.success.userCreated);
-					sendUsers(req, res);
+					return
 				}
+				http.sendSuccess(res, strings.success.userCreated);
 			});
 		},
 
 		edit: function (req, res) {
-			debug && console.log("Edit user", req.body.username);
-			// TO DO
+			debug && console.log("Edit user", req.params.username);
+			debug && console.log(req.body);
+
+			var edit_user = req.body;
+			getUser(req.params.username, function (err, user) {
+				user.email = edit_user.email || user.email;
+				user.password = edit_user.password || user.password;
+				user.name = edit_user.name || user.name;
+
+				user.save(function (err) {
+					if (err) throw err;
+					http.sendSuccess(res, strings.success.userEdited);
+				});
+			});
 		},
 
 		delete: function (req, res) {
-			debug && console.log("Delete user", req.body.username);
+			debug && console.log("Delete user", req.params.username);
 
-			User.remove({
-				username: req.body.username
+			User.findOneAndRemove({
+				username: req.params.username
 			}, function (err) {
 				if (err) {
 					http.sendError(res, err);
 					return;
-				} else {
-					http.sendSuccess(res, strings.success.userDeleted);
-					sendUsers(req, res);
 				}
+				http.sendSuccess(res, strings.success.userDeleted);
 			});
 		}
 	};

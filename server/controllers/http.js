@@ -12,6 +12,7 @@ var http = {
 	sendSuccess: function (res, msg) {
 		debug && console.log(msg);
 		setArrayHeader(res, 'Success', msg);
+		res.end();
 	},
 	sendError: function (res, err) {
 		debug && console.error(err.message);
