@@ -5,7 +5,7 @@ module.exports = function (app, db) {
 
 	app.route('/api/users').get(users.list);
 	app.route('/api/users/create').post(users.create);
-	app.route('/api/users/edit/:id').post(users.edit);
-	app.route('/api/users/delete').post(users.delete);
-	app.route('/api/users/:id').get(users.get);
+	app.route('/api/users/edit/:username').post(users.edit);
+	app.route('/api/users/delete/:username').post(users.delete);
+	app.route('/api/users/:username').get(users.get);
 }
