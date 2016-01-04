@@ -29,12 +29,21 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 .controller('usersCtrl', ['$scope', '$location', '$routeParams', 'serverServices', 'usersServices', function ($scope, $location, $routeParams, serverServices, usersServices) {
 	console.log("usersCtrl");
 
+	$scope.user = {};
 	$scope.users = [];
 	$scope.username = $routeParams.username;
 
-	usersServices.getList(function (users) {
-		$scope.users = users;
-	});
+	if($scope.username) {
+		usersServices.getUser($scope.username, function (user) {
+			$scope.user = user;
+		});
+	} else {
+		usersServices.getList(function (users) {
+			$scope.users = users.sort(function(a, b){
+				return a.name > b.name;
+			});
+		});
+	}
 
 	$scope.create = function (user) {
 		serverServices.post('/users/create', user, function (data) {
@@ -44,16 +53,25 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 	}
 
 	$scope.delete = function () {
-		serverServices.post('/users/delete', {
-			username: $routeParams.username
+		serverServices.post('/users/delete/' + $scope.user.username, {
+			username: $scope.user.username
 		}, function (data) {
 			$scope.users = data;
 			$location.path("users");
 		});
 	}
 
-	$scope.edit = function (user) {
-		console.log(user);
+	$scope.edit = function () {
+		var edit_user = {
+			username: $scope.user.username,
+			name: $scope.user.name,
+			password: $scope.user.edit_password,
+			email: $scope.user.edit_email
+		}
+		serverServices.post('/users/edit/' + edit_user.username, edit_user, function (data) {
+			$scope.users = data;
+			$location.path("users");
+		});
 	}
 
 	$scope.getProfileImage = function (username) {

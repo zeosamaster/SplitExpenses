@@ -9,6 +9,10 @@ angular.module('ngSplitExpenses.usersServices', [])
 		serverServices.getList(this.controller, callback);
 	}
 
+	this.getUser = function(username, callback) {
+		serverServices.get('/users/' + username, {}, callback);
+	}
+
 	this.getProfileImage = function(user){
 		return user.image || "img/default_user_icon.png";
 	}
