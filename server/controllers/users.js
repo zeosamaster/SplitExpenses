@@ -7,7 +7,7 @@ var debug = require("../config").debug;
 
 function usersCtrl(db) {
 
-	function getUser(username, callback) {
+	function getUser(res, username, callback) {
 		User.findOne({
 			username: username
 		}, function (err, user) {
@@ -42,7 +42,7 @@ function usersCtrl(db) {
 		get: function (req, res) {
 			debug && console.log("Get user", req.params.username);
 
-			getUser(req.params.username, function (err, user) {
+			getUser(res, req.params.username, function (err, user) {
 				http.sendJson(res, user);
 			});
 		},
@@ -70,7 +70,7 @@ function usersCtrl(db) {
 			debug && console.log(req.body);
 
 			var edit_user = req.body;
-			getUser(req.params.username, function (err, user) {
+			getUser(res, req.params.username, function (err, user) {
 				user.email = edit_user.email || user.email;
 				user.password = edit_user.password || user.password;
 				user.name = edit_user.name || user.name;
