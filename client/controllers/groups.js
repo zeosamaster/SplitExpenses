@@ -12,40 +12,62 @@ angular.module('ngSplitExpenses.groups', ['ngRoute'])
 			templateUrl: 'views/groups/create.html',
 			controller: 'groupsCtrl'
 		})
-		.when('/groups/:groupId', {
+		.when('/groups/:group_id', {
 			templateUrl: 'views/groups/details.html',
 			controller: 'groupsCtrl'
 		})
-		.when('/groups/edit/:groupId', {
+		.when('/groups/edit/:group_id', {
 			templateUrl: 'views/groups/edit.html',
+			controller: 'groupsCtrl'
+		})
+		.when('/groups/delete/:group_id', {
+			templateUrl: 'views/groups/delete.html',
 			controller: 'groupsCtrl'
 		});
 }])
 
-.controller('groupsCtrl', ['$scope', 'groupsServices', function ($scope, groupsServices) {
-
-	$scope.selectedUsers = {};
-
+.controller('groupsCtrl', ['$scope', '$location', '$routeParams', 'serverServices', 'groupsServices', function ($scope, $location, $routeParams, serverServices, groupsServices) {
+	$scope.group = {};
 	$scope.groups = [];
-	groupsServices.getGroups(function(groups){
-		$scope.groups = groups;
-	});
+	$scope.group_id = $routeParams.group_id;
+
+	if ($scope.group_id) {
+		groupsServices.getGroup($scope.group_id, function (group) {
+			$scope.group = group;
+		});
+	} else {
+		groupsServices.getList(function (groups) {
+			$scope.groups = groups.sort(function (a, b) {
+				return a.name.toLowerCase() > b.name.toLowerCase();
+			});
+		});
+	}
 
 	$scope.create = function (group) {
-		group.members = [];
-		for (var user in $scope.selectedUsers) {
-			if ($scope.selectedUsers.hasOwnProperty(user)) {
-				group.members.push(user);
-			}
+		serverServices.post('/groups/create', group, function (data) {
+			$location.path("groups");
+		});
+	}
+
+	$scope.delete = function () {
+		serverServices.post('/groups/delete/' + $scope.group._id, {
+			_id: $scope.group._id
+		}, function (data) {
+			$location.path("groups");
+		});
+	}
+
+	$scope.edit = function () {
+		var edit_group = {
+			_id: $scope.group._id,
+			name: $scope.group.name
 		}
-		console.log(group);
+		serverServices.post('/groups/edit/' + edit_group._id, edit_group, function (data) {
+			$location.path("groups");
+		});
 	}
 
-	$scope.edit = function (group) {
-		console.log(group);
-	}
-
-	$scope.delete = function (group) {
-		console.log(group);
+	$scope.getGroupImage = function (group) {
+		return groupsServices.getGroupImage(group);
 	}
 }]);

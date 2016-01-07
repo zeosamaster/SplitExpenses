@@ -2,14 +2,16 @@
 
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('Group', new mongoose.Schema({
-	name: {
-		type: String,
-		unique: false
-	},
+var GroupSchema = new mongoose.Schema({
+	name: String
 }, {
-	collection: 'groups',
+	versionKey: false,
 	timestamps: {
-		createdAt: 'created_at'
+		createdAt: 'created',
+		updatedAt: 'updated'
 	}
-}));
+});
+
+var GroupModel = mongoose.model('Group', GroupSchema);
+
+module.exports = GroupModel;

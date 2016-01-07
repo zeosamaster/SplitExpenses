@@ -1,36 +1,16 @@
-<div class="col-lg-3"></div>
-<div class="col-lg-6">
-	<h3>Create Group</h3>
+<h3>Create Group</h3>
 
-	<form role="form" ng-submit="create(group)">
-		<div class="well well-sm">
-			<strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
+<form role="form" ng-submit="create(group)">
+	<div class="well well-sm">
+		<strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
+	</div>
+	<div class="form-group">
+		<label for="InputName">Name</label>
+		<div class="input-group">
+			<input type="text" class="form-control" ng-model="group.name" name="InputName" id="InputName" placeholder="Name" required>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 		</div>
-		<div class="form-group">
-			<label for="InputName">Name</label>
-			<div class="input-group">
-				<input type="text" class="form-control" ng-model="group.name" name="InputName" id="InputName" placeholder="Name" required>
-				<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="InputLocation">Location</label>
-			<div class="input-group">
-				<input type="text" class="form-control" ng-model="group.location" name="InputLocation" id="InputLocation" placeholder="Location">
-			</div>
-		</div>
-		<div class="form-group">
-			<label>Members</label>
-			<div class="input-group tiny-users">
-				<div class="tiny-user selectable" ng-class="{'selected-user': isUserSelected(user)}" ng-repeat="user in getUsers()">
-					<div ng-click="toggleSelectedUser(user)">
-						<img class="user-image" ng-src="{{getProfileImage(user)}}" />
-						<div class="name">{{user.name}}</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<button type="submit" name="submit" id="submit" class="btn btn-success pull-right">Submit</button>
-	</form>
-</div>
-<div class="col-lg-3"></div>
+	</div>
+	<a ng-href="#/groups" class="btn btn-danger pull-left">Cancel</a>
+	<button type="submit" name="submit" id="submit" class="btn btn-success pull-right">Submit</button>
+</form>

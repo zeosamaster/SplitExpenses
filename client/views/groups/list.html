@@ -1,7 +1,17 @@
+<div class="clearfix margin-bottom">
+	<a ng-href="#/groups/create" class="btn btn-info pull-right">Create new group</a>
+</div>
 <div class="list">
-	<div class="user" ng-repeat="user in users">
-		<img class="user-image" ng-if="user.image" ng-src="user.image" />
-		<img class="user-image" ng-if="!user.image" src="img/default_user_icon.png" />
-		<span>{{user.name}}</span>
+	<div class="item" ng-repeat="group in groups">
+		<a ng-href="#/groups/{{group._id}}">
+			<img class="pull-left item-image" ng-src="{{getGroupImage(group)}}" />
+		</a>
+		<div class="pull-right btn-group-sm">
+			<a ng-href="#/groups/edit/{{group._id}}" class="btn btn-success"> <i class="fa fa-pencil"></i> </a>
+			<a ng-href="#/groups/delete/{{group._id}}" class="btn btn-danger"> <i class="fa fa-close"></i> </a>
+		</div>
+		<div class="info">
+			<h4>{{group.name}}</h4>
+		</div>
 	</div>
 </div>
