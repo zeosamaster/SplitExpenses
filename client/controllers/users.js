@@ -27,8 +27,6 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 }])
 
 .controller('usersCtrl', ['$scope', '$location', '$routeParams', 'serverServices', 'usersServices', function ($scope, $location, $routeParams, serverServices, usersServices) {
-	console.log("usersCtrl");
-
 	$scope.user = {};
 	$scope.users = [];
 	$scope.username = $routeParams.username;
@@ -40,14 +38,13 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 	} else {
 		usersServices.getList(function (users) {
 			$scope.users = users.sort(function(a, b){
-				return a.name > b.name;
+				return a.name.toLowerCase() > b.name.toLowerCase();
 			});
 		});
 	}
 
 	$scope.create = function (user) {
 		serverServices.post('/users/create', user, function (data) {
-			$scope.users = data;
 			$location.path("users");
 		});
 	}
@@ -56,7 +53,6 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 		serverServices.post('/users/delete/' + $scope.user.username, {
 			username: $scope.user.username
 		}, function (data) {
-			$scope.users = data;
 			$location.path("users");
 		});
 	}
@@ -69,7 +65,6 @@ angular.module('ngSplitExpenses.users', ['ngRoute'])
 			email: $scope.user.edit_email
 		}
 		serverServices.post('/users/edit/' + edit_user.username, edit_user, function (data) {
-			$scope.users = data;
 			$location.path("users");
 		});
 	}
