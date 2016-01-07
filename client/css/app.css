@@ -50,34 +50,34 @@ footer {
 	width: 60px;
 }
 
-/* users */
+/* items */
 
-.user {
+.item {
 	height: 100px;
 }
 
-.user .btn-group-sm {
+.item .btn-group-sm {
 	line-height: 100px;
 }
 
-.user-image {
+.item-image {
 	margin: 18px;
 	width: 64px;
 	height: 64px;
 }
 
-.tiny-users {
+.tiny-items {
 	display: inline-flex;
 }
 
-.tiny-user {
+.tiny-item {
 	width: 100px;
 }
 
-.tiny-user * {
+.tiny-item * {
 	text-align: center;
 }
 
-.tiny-user.selected-user {
+.tiny-item.selected-item {
 	background-color: #FC5;
 }

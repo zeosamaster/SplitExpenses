@@ -2,9 +2,9 @@
 	<a ng-href="#/users/create" class="btn btn-info pull-right">Create new user</a>
 </div>
 <div class="list">
-	<div class="user" ng-repeat="user in users">
+	<div class="item" ng-repeat="user in users">
 		<a ng-href="#/users/{{user.username}}">
-			<img class="pull-left user-image" ng-src="{{getProfileImage(user)}}" />
+			<img class="pull-left item-image" ng-src="{{getProfileImage(user)}}" />
 		</a>
 		<div class="pull-right btn-group-sm">
 			<a ng-href="#/users/edit/{{user.username}}" class="btn btn-success"> <i class="fa fa-pencil"></i> </a>
