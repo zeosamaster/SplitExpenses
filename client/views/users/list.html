@@ -3,17 +3,24 @@
 </div>
 <div class="list">
 	<div class="item" ng-repeat="user in users">
-		<a ng-href="#/users/{{user.username}}">
-			<img class="pull-left item-image" ng-src="{{getProfileImage(user)}}" />
+		<a class="item-image pull-left" ng-href="#/users/{{user.username}}">
+			<img ng-src="{{getProfileImage(user)}}" />
 		</a>
-		<div class="pull-right btn-group-sm">
-			<a ng-href="#/users/edit/{{user.username}}" class="btn btn-success"> <i class="fa fa-pencil"></i> </a>
-			<a ng-href="#/users/remove/{{user.username}}" class="btn btn-danger"> <i class="fa fa-close"></i> </a>
+		<div class="info pull-left">
+			<h4 class="name" title="{{user.name}}">{{user.name}}</h4>
+			<p class="text-muted username" title="{{user.username}}">{{user.username}}</p>
+			<p class="text-muted email" title="{{user.email}}">{{user.email}}</p>
 		</div>
-		<div class="info">
-			<h4>{{user.name}}</h4>
-			<p class="text-muted">{{user.email}}</p>
-			<p class="text-muted">{{user.username}}</p>
+		<div class="btn-group-sm pull-right">
+			<div ng-show="!removeUser" ng-hide="removeUser">
+				<a ng-href="#/users/edit/{{user.username}}" class="btn btn-success"> <i class="fa fa-pencil"></i> </a>
+				<a ng-click="removeUser=user.username" class="btn btn-danger"> <i class="fa fa-close"></i> </a>
+			</div>
+			<div ng-show="removeUser" ng-hide="!removeUser">
+				<span>Are you sure?</span>
+				<a ng-click="remove(user.username)" class="btn btn-success">Yes</a>
+				<a ng-click="removeUser=null" class="btn btn-danger">No</a>
+			</div>
 		</div>
 	</div>
 </div>

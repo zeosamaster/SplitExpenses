@@ -56,28 +56,21 @@ footer {
 	height: 100px;
 }
 
-.item .btn-group-sm {
-	line-height: 100px;
+@media screen and (max-width: 500px) {
+	.item .info > * {
+		width: 150px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 }
 
-.item-image {
+.item-image > img {
 	margin: 18px;
 	width: 64px;
 	height: 64px;
 }
 
-.tiny-items {
-	display: inline-flex;
-}
-
-.tiny-item {
-	width: 100px;
-}
-
-.tiny-item * {
-	text-align: center;
-}
-
-.tiny-item.selected-item {
-	background-color: #FC5;
+.item .btn-group-sm {
+	line-height: 100px;
 }
