@@ -1,27 +1,33 @@
-'use strict';
+/*global module, require*/
 
-var debug = require("../config").debug;
+(function () {
+	'use strict';
 
-function setArrayHeader(res, key, value) {
-	var values = res.get(key) || [];
-	values.push(value);
-	res.append(key, values);
-}
+	var log = require('../resources/log'),
+		http;
 
-var http = {
-	sendSuccess: function (res, msg) {
-		debug && console.log(msg);
-		setArrayHeader(res, 'Success', msg);
-		res.end();
-	},
-	sendError: function (res, err) {
-		debug && console.error(err.message);
-		setArrayHeader(res, 'Error', err.message);
-		res.end();
-	},
-	sendJson: function (res, json) {
-		res.json(json);
+	function setArrayHeader(res, key, value) {
+		var values = res.get(key) || [];
+		values.push(value);
+		res.append(key, values);
 	}
-};
 
-module.exports = http;
+	http = {
+		sendSuccess: function (res, msg) {
+			log(msg);
+			setArrayHeader(res, 'Success', msg);
+			res.end();
+		},
+		sendError: function (res, err) {
+			log(err.message);
+			setArrayHeader(res, 'Error', err.message);
+			res.end();
+		},
+		sendJson: function (res, json) {
+			res.json(json);
+		}
+	};
+
+	module.exports = http;
+
+}());

@@ -1,26 +1,33 @@
-var UserHandler = require('./users'),
-	GroupHandler = require('./groups'),
-	ExpenseHandler = require('./expenses'),
-	PaymentHandler = require('./payments'),
-	ErrorHandler = require('./error').errorHandler;
+/*global module, require*/
+(function () {
+	'use strict';
 
-module.exports = function(app, db) {
-	app.all('*', function(req, res, next) {
+	var userHandler = require('./users'),
+		groupHandler = require('./groups'),
+		expenseHandler = require('./expenses'),
+		paymentHandler = require('./payments'),
+		errorHandler = require('./error').errorHandler,
+		log = require('../resources/log');
 
-		console.log("Received request for:", req.url);
+	module.exports = function (app, db) {
+		app.all('*', function (req, res, next) {
 
-		res.header("Access-Control-Allow-Origin", "*");
-		res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
-		res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-		res.header("Access-Control-Expose-Headers", "Success, Error");
-		if ('OPTIONS' == req.method) {
-			return res.sendStatus(200);
-		}
-		next();
-	});
+			log("Received request for:", req.url);
 
-    UserHandler(app, db);
-    GroupHandler(app, db);
-    ExpenseHandler(app, db);
-    PaymentHandler(app, db);
-}
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
+			res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+			res.header("Access-Control-Expose-Headers", "Success, Error");
+			if ('OPTIONS' === req.method) {
+				return res.sendStatus(200);
+			}
+			next();
+		});
+
+		userHandler(app, db);
+		groupHandler(app, db);
+		expenseHandler(app, db);
+		paymentHandler(app, db);
+	};
+
+}());

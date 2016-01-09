@@ -1,17 +1,22 @@
-'use strict';
+/*global module, require*/
+(function () {
+	'use strict';
 
-var mongoose = require('mongoose');
+	var mongoose, GroupSchema, GroupModel;
 
-var GroupSchema = new mongoose.Schema({
-	name: String
-}, {
-	versionKey: false,
-	timestamps: {
-		createdAt: 'created',
-		updatedAt: 'updated'
-	}
-});
+	mongoose = require('mongoose');
 
-var GroupModel = mongoose.model('Group', GroupSchema);
+	GroupSchema = new mongoose.Schema({
+		name: String
+	}, {
+		versionKey: false,
+		timestamps: {
+			createdAt: 'created',
+			updatedAt: 'updated'
+		}
+	});
+	GroupModel = mongoose.model('Group', GroupSchema);
 
-module.exports = GroupModel;
+	module.exports = GroupModel;
+
+}());
