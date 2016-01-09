@@ -4,8 +4,6 @@
 
 	var userHandler = require('./users'),
 		groupHandler = require('./groups'),
-		expenseHandler = require('./expenses'),
-		paymentHandler = require('./payments'),
 		errorHandler = require('./error').errorHandler,
 		log = require('../resources/log');
 
@@ -26,8 +24,6 @@
 
 		userHandler(app, db);
 		groupHandler(app, db);
-		expenseHandler(app, db);
-		paymentHandler(app, db);
 	};
 
 }());

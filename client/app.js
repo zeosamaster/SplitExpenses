@@ -8,13 +8,9 @@
 		'ngRoute',
 		'ngSplitExpenses.users',
 		'ngSplitExpenses.groups',
-		'ngSplitExpenses.expenses',
-		'ngSplitExpenses.payments',
 		'ngSplitExpenses.serverServices',
 		'ngSplitExpenses.groupsServices',
-		'ngSplitExpenses.usersServices',
-		'ngSplitExpenses.expensesServices',
-		'ngSplitExpenses.paymentsServices'
+		'ngSplitExpenses.usersServices'
 	]);
 	angular.config(['$routeProvider', function ($routeProvider) {
 		$routeProvider.otherwise({
