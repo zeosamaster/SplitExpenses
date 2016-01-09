@@ -15,7 +15,7 @@
 		bodyParser = require('body-parser'),
 		MongoClient = require('mongodb').MongoClient,
 		routes = require('./routes'),
-		log = require('../resources/log'),
+		log = require('./resources/log'),
 
 		mongoose = require('mongoose'),
 		db = mongoose.connect(config.db_url, function (err) {

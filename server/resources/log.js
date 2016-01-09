@@ -4,9 +4,9 @@
 
 	var debug = require('../config').debug;
 
-	module.exports = function (text) {
+	module.exports = function () {
 		if (debug) {
-			console.log(text);
+			console.log.apply(null, arguments);
 		}
 	};
 }());
