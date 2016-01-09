@@ -58,6 +58,11 @@
 				log("Create user");
 				log(req.body);
 
+				if (!req.body.username || !req.body.name || !req.body.email || !req.body.password) {
+					http.sendError(res, strings.error.emptyFields);
+					return;
+				}
+
 				User.create({
 					username: req.body.username,
 					name: req.body.name,
@@ -65,7 +70,7 @@
 					password: req.body.password
 				}, function (err, result) {
 					if (err) {
-						http.sendError(res, err);
+						http.sendError(res, err.message);
 						return;
 					}
 					http.sendSuccess(res, strings.success.userCreated);
@@ -98,7 +103,7 @@
 					username: req.params.username
 				}, function (err) {
 					if (err) {
-						http.sendError(res, err);
+						http.sendError(res, err.message);
 						return;
 					}
 					http.sendSuccess(res, strings.success.userDeleted);

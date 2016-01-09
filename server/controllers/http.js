@@ -18,9 +18,9 @@
 			setArrayHeader(res, 'Success', msg);
 			res.end();
 		},
-		sendError: function (res, err) {
-			log(err.message);
-			setArrayHeader(res, 'Error', err.message);
+		sendError: function (res, msg) {
+			log(msg);
+			setArrayHeader(res, 'Error', msg);
 			res.end();
 		},
 		sendJson: function (res, json) {

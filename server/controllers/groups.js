@@ -63,7 +63,7 @@
 					name: req.body.name
 				}, function (err, result) {
 					if (err) {
-						http.sendError(res, err);
+						http.sendError(res, err.message);
 						return;
 					}
 					http.sendSuccess(res, strings.success.groupCreated);
@@ -94,7 +94,7 @@
 					_id: req.params.group_id
 				}, function (err) {
 					if (err) {
-						http.sendError(res, err);
+						http.sendError(res, err.message);
 						return;
 					}
 					http.sendSuccess(res, strings.success.groupDeleted);

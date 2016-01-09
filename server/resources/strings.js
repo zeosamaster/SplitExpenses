@@ -14,7 +14,8 @@
 		error: {
 			duplicateUser: "The chosen username is already taken, please choose another",
 			userNotFound: "The user could not be found, please try again",
-			groupNotFound: "The group could not be found, please try again"
+			groupNotFound: "The group could not be found, please try again",
+			emptyFields: "There are empty required fields, please try again"
 		}
 	};
 
