@@ -59,6 +59,11 @@
 				log("Create group");
 				log(req.body);
 
+				if (!req.body.name) {
+					http.sendError(res, strings.error.emptyFields);
+					return;
+				}
+
 				Group.create({
 					name: req.body.name
 				}, function (err, result) {

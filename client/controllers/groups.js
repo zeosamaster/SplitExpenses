@@ -33,16 +33,15 @@
 		.controller('groupsCtrl', ['$scope', '$location', '$routeParams', 'serverServices', 'groupsServices', function ($scope, $location, $routeParams, serverServices, groupsServices) {
 			$scope.group = {};
 			$scope.groups = [];
-			$scope.group_id = $routeParams.group_id;
 
 			$scope.users = [];
 			$scope.selected_users = [];
 
-			if ($scope.group_id) {
-				groupsServices.getGroup($scope.group_id, function (group) {
-					$scope.group = group;
-				});
-			} else {
+			$scope.group_id = $routeParams.group_id;
+
+			/* load */
+
+			function getGroupsList() {
 				groupsServices.getList(function (groups) {
 					$scope.groups = groups.sort(function (a, b) {
 						return a.name.toLowerCase() > b.name.toLowerCase();
@@ -50,17 +49,27 @@
 				});
 			}
 
+			if ($scope.group_id) {
+				groupsServices.getGroup($scope.group_id, function (group) {
+					$scope.group = group;
+				});
+			} else {
+				getGroupsList();
+			}
+
+			/* crud */
+
 			$scope.create = function (group) {
 				serverServices.post('/groups/create', group, function (data) {
 					$location.path("groups");
 				});
 			};
 
-			$scope.remove = function () {
-				serverServices.post('/groups/remove/' + $scope.group._id, {
-					_id: $scope.group._id
+			$scope.remove = function (group_id) {
+				serverServices.post('/groups/remove/' + group_id, {
+					_id: group_id
 				}, function (data) {
-					$location.path("groups");
+					getGroupsList();
 				});
 			};
 
@@ -73,6 +82,8 @@
 					$location.path("groups");
 				});
 			};
+
+			/* utils */
 
 			$scope.getGroupImage = function (group) {
 				return groupsServices.getGroupImage(group);

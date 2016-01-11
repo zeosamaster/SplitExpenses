@@ -5,7 +5,7 @@
 
 	angular
 		.module('ngSplitExpenses.groupsServices', [])
-			.service('groupsServices', ['serverServices', function (serverServices) {
+		.service('groupsServices', ['serverServices', function (serverServices) {
 			this.controller = '/groups';
 
 			this.getList = function (callback) {

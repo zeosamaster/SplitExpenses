@@ -3,15 +3,22 @@
 </div>
 <div class="list">
 	<div class="item" ng-repeat="group in groups">
-		<a ng-href="#/groups/{{group._id}}">
-			<img class="pull-left item-image" ng-src="{{getGroupImage(group)}}" />
+		<a class="item-image pull-left" ng-href="#/groups/{{group._id}}">
+			<img ng-src="{{getGroupImage(group)}}" />
 		</a>
-		<div class="pull-right btn-group-sm">
-			<a ng-href="#/groups/edit/{{group._id}}" class="btn btn-success"> <i class="fa fa-pencil"></i> </a>
-			<a ng-href="#/groups/remove/{{group._id}}" class="btn btn-danger"> <i class="fa fa-close"></i> </a>
+		<div class="info pull-left">
+			<h4 class="name" title="{{group.name}}">{{group.name}}</h4>
 		</div>
-		<div class="info">
-			<h4>{{group.name}}</h4>
+		<div class="btn-group-sm pull-right">
+			<div ng-show="!removeGroup" ng-hide="removeGroup">
+				<a ng-href="#/groups/edit/{{group._id}}" class="btn btn-success"> <i class="fa fa-pencil"></i> </a>
+				<a ng-click="removeGroup=group._id" class="btn btn-danger"> <i class="fa fa-close"></i> </a>
+			</div>
+			<div ng-show="removeGroup" ng-hide="!removeGroup">
+				<span>Are you sure?</span>
+				<a ng-click="remove(group._id)" class="btn btn-success">Yes</a>
+				<a ng-click="removeGroup=null" class="btn btn-danger">No</a>
+			</div>
 		</div>
 	</div>
 </div>

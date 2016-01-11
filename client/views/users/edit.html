@@ -7,21 +7,21 @@
 	<div class="form-group">
 		<label for="InputName">Name</label>
 		<div class="input-group">
-			<input type="text" class="form-control" ng-model="user.name" name="InputName" id="InputName" placeholder="Name" required>
+			<input type="text" class="form-control" ng-model="user.name" name="name" id="InputName" placeholder="Name" required>
 			<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="InputPassword">Password</label>
-		<input type="password" class="form-control" ng-model="user.edit_password" name="InputPassword" id="InputPassword" placeholder="Password">
+		<input type="password" class="form-control" ng-model="user.edit_password" name="password" id="InputPassword" placeholder="Password">
 	</div>
 	<div class="form-group">
 		<label for="InputEmail">Email</label>
-		<input type="email" class="form-control" ng-model="user.edit_email" id="InputEmail" name="InputEmail" placeholder="Email">
+		<input type="email" class="form-control" ng-model="user.edit_email" name="email" id="InputEmail" placeholder="Email">
 	</div>
 	<div class="form-group">
 		<label for="InputEmail">Confirm Email</label>
-		<input type="email" class="form-control" ng-model="user.edit_confirm_email" id="InputEmailConfirm" name="InputEmailConfirm" placeholder="Confirm Email">
+		<input type="email" class="form-control" ng-model="user.edit_confirm_email" name="emailConfirm" id="InputEmailConfirm" placeholder="Confirm Email">
 	</div>
 	<a ng-href="#/users" class="btn btn-danger pull-left">Cancel</a>
 	<button type="submit" name="submit" id="submit" class="btn btn-success pull-right">Submit</button>

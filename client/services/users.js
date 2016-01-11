@@ -20,5 +20,4 @@
 				return user.image || "img/default_user_icon.png";
 			};
 		}]);
-
 }());
